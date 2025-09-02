@@ -1,0 +1,109 @@
+---
+// 文章卡片组件 - 用于显示文章预览信息，包括标题、描述、日期和缩略图
+
+import { slugifyStr } from "@/utils/slugify";          // 字符串转换为URL友好格式的工具函数
+import type { CollectionEntry } from "astro:content";  // Astro内容集合类型
+import { getPath } from "@/utils/getPath";             // 获取文章路径的工具函数
+import Datetime from "./Datetime.astro";               // 日期时间显示组件
+
+// 组件属性接口定义
+export interface Props extends CollectionEntry<"blog"> {
+  variant?: "h2" | "h3";        // 标题标签类型
+  showDescription?: boolean;    // 是否显示描述
+  imageClass?: string;          // 自定义图片样式类
+  fallbackOgImage?: string;     // 备用图片
+  showCommentCount?: boolean;   // 是否显示评论数统计
+}
+
+// 解构组件属性并设置默认值
+const { 
+  variant = "h2",              // 默认使用h2
+  data, 
+  id, 
+  filePath, 
+  showDescription = true,      // 默认显示
+  imageClass, 
+  fallbackOgImage,
+  showCommentCount = true      // 默认显示评论数
+} = Astro.props;
+
+const { title, description, pubDatetime, modDatetime, timezone, ogImage } = data;
+
+const headerProps = {
+  style: { viewTransitionName: slugifyStr(title) },
+  class: "text-lg font-medium decoration-dashed hover:underline",
+};
+
+// 默认图片样式
+const defaultImageClass = "w-[76px] sm:w-[50px] h-auto object-cover rounded-md aspect-square group-hover:opacity-90 transition-opacity duration-300";
+
+// 处理图片
+let imgSrc = typeof ogImage === 'string' ? ogImage : (ogImage as any)?.src;
+
+// 如果没有图片或图片为空，使用备用
+if ((!imgSrc || imgSrc.trim() === "") && fallbackOgImage) {
+  imgSrc = fallbackOgImage;
+}
+---
+
+<!-- 文章列表项 -->
+<li class="my-6 grid grid-cols-[auto_1fr_auto] items-center gap-4">
+  {/* 缩略图 */}
+  {imgSrc && (
+    <a href={getPath(id, filePath)} class="shrink-0">
+      <img
+        src={imgSrc}
+        alt={title}
+        class={`${imageClass || defaultImageClass} mx-auto my-auto`}
+        loading="lazy"
+        onerror={fallbackOgImage ? `this.onerror=null; this.src='${fallbackOgImage}';` : undefined}
+      />
+    </a>
+  )}
+
+  {/* 中间内容：文章信息 */}
+  <div>
+    <a
+      href={getPath(id, filePath)}
+      class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+    >
+      {variant === "h2" ? (
+        <h2 {...headerProps}>{title}</h2>
+      ) : (
+        <h3 {...headerProps}>{title}</h3>
+      )}
+    </a>
+
+    {/* 发布/修改日期 */}
+    <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} timezone={timezone} />
+
+    {/* 文章描述 */}
+    <!-- {showDescription && (
+      <p class="mt-2 text-sm text-gray-700 dark:text-gray-300 hidden sm:block">
+        {description.length > 40
+          ? description.substring(0, 40) + "..."  // 超过40字符时截断并添加省略
+          : description}
+      </p>
+    )} -->
+  </div>
+
+  {/* artalk 评论数统计 */}
+  {showCommentCount && (
+    <a
+      href={getPath(id, filePath)}
+      class="comment-count-badge block text-center no-underline rounded-[10px] w-[30px] h-[16px] font-medium text-[13px] leading-[16px] opacity-100 transition-colors duration-200"
+    >
+      <span class="artalk-comment-count" data-page-key={getPath(id, filePath)}></span>
+    </a>
+  )}
+</li>
+
+<style>
+  /* 自定义样式 */
+  /* 例如：确保图片高度一致性（如果aspect-video在某些浏览器中不工作） */
+  /*
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+  */
+</style>
