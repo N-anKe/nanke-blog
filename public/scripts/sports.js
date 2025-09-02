@@ -281,10 +281,10 @@ function getChinaTime() {
 }
 
 // 手搓JSON
-async function loadActivityData() {
-    const response = await fetch('https://cos.lhasa.icu/assets/strava_data.json');
-    return response.json();
-}
+// async function loadActivityData() {
+//     const response = await fetch('https://cos.lhasa.icu/assets/strava_data.json');
+//     return response.json();
+// }
 
 // 加载数据并生成日历
 (async function() {

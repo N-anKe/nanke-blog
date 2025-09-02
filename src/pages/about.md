@@ -71,13 +71,3 @@ CURRENT STATUS: ⌛Loading... (通常需要一杯咖啡的时间来初始化)
 *   **我最爱的`CSS`属性**：`border-radius` (因为能让一切变得柔软)
 *   **Debug 终极奥义**： rubber duck debugging ( rubber duck debugging ) 和散步
 *   **我的超能力**：在 deadline 前爆发出惊人的效率
-
-## LICENSE
-
-本博客前端源码基于 <a href="https://github.com/satnaing/astro-paper" target="_blank" rel="noopener noreferrer">astro-paper</a> 项目构建，遵循 MIT License 发布：
-
-> Copyright (c) 2023 Sat Naing  
-> 本软件可自由使用、复制、修改、分发，前提是保留原始版权声明。  
-> 软件按“原样”提供，不附带任何明示或暗示的担保。
-
-> <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0 国际许可协议</a>，转载请务必注明出处，禁止商用及修改。

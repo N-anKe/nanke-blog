@@ -1,7 +1,7 @@
 // Astro 核心配置
 import { defineConfig, envField } from "astro/config";
 // Tailwind CSS Vite 插件
-import tailwindcss from "@tailwindcss/vite";
+// import tailwindcss from "@tailwindcss/vite";
 // 站点地图生成器
 import sitemap from "@astrojs/sitemap";
 // Markdown 目录生成器
@@ -96,7 +96,7 @@ export default defineConfig({
   // Vite 构建工具
   vite: {
     // Tailwind CSS 支持
-    plugins: [tailwindcss()], 
+    // plugins: [tailwindcss()], 
     
     // 依赖优化
     optimizeDeps: {
@@ -107,15 +107,15 @@ export default defineConfig({
     // 开发服务器
     server: {
       // 允许的主机名
-      allowedHosts: ["lhasa.icu"],
+      allowedHosts: ["nanke.icu"],
     },
     
     // 全局常量
     define: {
       // 图片资源 CDN 地址
-      IMAGES: JSON.stringify("https://cos.lhasa.icu/ArticlePictures"),
+      // IMAGES: JSON.stringify("https://cos.lhasa.icu/ArticlePictures"),
       // EXIF 数据 API 地址
-      EXIF: JSON.stringify("https://lhasa-1253887673.cos.ap-shanghai.myqcloud.com/ArticlePictures"),
+      // EXIF: JSON.stringify("https://lhasa-1253887673.cos.ap-shanghai.myqcloud.com/ArticlePictures"),
     },
   },
   // 图片处理

@@ -25,7 +25,7 @@ const {
   author = SITE.author,                                     // 默认使用站点作者
   profile = SITE.profile,                                   // 默认使用站点作者资料
   description = SITE.desc,                                  // 默认使用站点描述
-  ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",  // 默认OG图片
+  // ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",  // 默认OG图片
   canonicalURL = new URL(Astro.url.pathname, Astro.url),   // 当前页面的完整URL
   pubDatetime,                                              // 发布时间
   modDatetime,                                              // 修改时间
@@ -33,14 +33,14 @@ const {
 } = Astro.props;
 
 // 构建社交媒体分享图片的完整URL
-const socialImageURL = new URL(ogImage, Astro.url);
+// const socialImageURL = new URL(ogImage, Astro.url);
 
 // 构建JSON-LD结构化数据（用于SEO和搜索引擎理解）
 const structuredData = {
   "@context": "https://schema.org",                         // Schema.org上下文
   "@type": "BlogPosting",                                   // 内容类型：博客文章
   headline: `${title}`,                                     // 文章标题
-  image: `${socialImageURL}`,                               // 文章图片
+  // image: `${socialImageURL}`,                               // 文章图片
   datePublished: `${pubDatetime?.toISOString()}`,           // 发布时间（ISO格式）
   ...(modDatetime && { dateModified: modDatetime.toISOString() }), // 修改时间（如果存在）
   author: [
@@ -65,9 +65,9 @@ const structuredData = {
     <meta name="viewport" content="width=device-width" />  <!-- 响应式视口 -->
     
     <!-- 网站图标和清单文件 -->
-    <link rel="icon" href="https://cos.lhasa.icu/StylePictures/favicon.ico" sizes="32x32" />      <!-- ICO格式图标 -->
-    <link rel="icon" href="https://cos.lhasa.icu/StylePictures/favicon.svg" type="image/svg+xml" /> <!-- SVG格式图标 -->
-    <link rel="apple-touch-icon" href="https://cos.lhasa.icu/StylePictures/apple-touch-icon.png" /> <!-- Apple设备图标 -->
+    <link rel="icon" href="/public/favicon.ico" sizes="32x32" />     <!-- ICO格式图标 -->
+    <!-- <link rel="icon" href="https://cos.lhasa.icu/StylePictures/favicon.svg" type="image/svg+xml" /> SVG格式图标 -->
+    <!-- <link rel="apple-touch-icon" href="https://cos.lhasa.icu/StylePictures/apple-touch-icon.png" /> Apple设备图标 -->
     <link rel="manifest" href="/site.webmanifest" />           <!-- Web应用清单 -->
     <link rel="canonical" href={canonicalURL} />               <!-- 规范URL -->
     <meta name="generator" content={Astro.generator} />        <!-- 生成器信息 -->
@@ -83,7 +83,7 @@ const structuredData = {
     <meta property="og:title" content={title} />           <!-- OG标题 -->
     <meta property="og:description" content={description} /> <!-- OG描述 -->
     <meta property="og:url" content={canonicalURL} />      <!-- OG URL -->
-    <meta property="og:image" content={socialImageURL} />  <!-- OG图片 -->
+    <!-- <meta property="og:image" content={socialImageURL} />  OG图片 -->
 
     <!-- 文章发布/修改时间标签 -->
     {
@@ -108,7 +108,7 @@ const structuredData = {
     <meta property="twitter:url" content={canonicalURL} />         <!-- Twitter URL -->
     <meta property="twitter:title" content={title} />              <!-- Twitter标题 -->
     <meta property="twitter:description" content={description} />  <!-- Twitter描述 -->
-    <meta property="twitter:image" content={socialImageURL} />     <!-- Twitter图片 -->
+    <!-- <meta property="twitter:image" content={socialImageURL} />     Twitter图片 -->
 
     <!-- Mastodon 联邦宇宙创作者标签 -->
     <meta name="fediverse:creator" content="@lhasarider@mastodon.social">

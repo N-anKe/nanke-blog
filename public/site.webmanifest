@@ -1,19 +1,19 @@
 {
-  "name": "lhasa's Blog",
-  "short_name": "lhasa's Blog",
-  "description": "千禧年小孩、长途骑行小学生、野钓路亚、振出并继、古典乐爱好者、野生程序员、独立开发者",
+  "name": "NanKe's Laboratory",
+  "short_name": "NanKe's Laboratory",
+  "description": "你好呀，闯入代码与生活缝隙的旅人 👋",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1f2937",
   "icons": [
     {
-      "src": "https://cos.lhasa.icu/StylePictures/favicon.ico",
+      "src": "",
       "sizes": "32x32",
       "type": "image/x-icon"
     },
     {
-      "src": "https://cos.lhasa.icu/StylePictures/favicon.svg",
+      "src": "",
       "sizes": "any",
       "type": "image/svg+xml"
     }
